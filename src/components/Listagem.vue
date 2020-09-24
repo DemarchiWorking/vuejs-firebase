@@ -1,57 +1,23 @@
 <template>
-  <div>
-    {{usuarios}}
-    <tr v-for="usuario of usuarios" :key="usuario.email"> {{usuario.email}}
-         <b-card
-    title="Card Title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-
-      
-       </tr>
-    
-  </div>
+<div>
+</div>
 </template>
 
 <script>
 
-import Produto from '../../services/produtos'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 export default {
-  name: 'Listagem',
-  props: {
-    msg: String
-  },
-  data() {
-  return {
-    usuarios: []
-  }},
-  mounted(){
-   // Produto.listar().then(resposta => {
-    //  console.log(resposta.data[1])
-    ///})  
-  },
-  created(){
-    let promisse = Produto.listar()
-    promisse.then(resposta => { 
-      this.usuarios = resposta.data
-    }) 
+  name: 'Listagem'
+  
   }
-}
+ 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  *{
+    border: 1px 1px 1px 1px black;
+  }
 </style>

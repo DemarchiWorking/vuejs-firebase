@@ -4,5 +4,10 @@ export default {
 
     listar:() => {
         return http.get('user')
-    }
+    },
+
+    adicionar:() => {
+        }
+
+
 }
