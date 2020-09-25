@@ -1,25 +1,30 @@
 <template>
   <div> 
-      
+      <b-card-group deck>
+    <b-card
+      class="container"
+      header-tag="header"
+      footer="Acessment"
+      title="Cadastrar Produtos"
+    >
+     
+
      <b-container class="bv-example-row p-12">
-  <b-row class="text-center">
-    <b-col cols="8">
-       <h2>Cadastrar Produtos</h2>
-    </b-col>
-     </b-row>
+  
     </b-container>
-    <form action="#">
+    <form @submit.prevent="submit()">
         <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" v-model="name">
+            <label for="name">Nome do Produto: </label>
+            <input type="text"  v-model="form.produtoNome">
         </div>
         <div>
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" v-model="email">
+            <label for="email">Valor: </label>
+            <input  v-model="form.produtoValor">
         </div>
-        <div><button type="submit" v-bind:disabled="!isValid">Submit</button></div>
+        <div><button type="submit">Submit</button></div>
     </form>
- 
+ </b-card>
+      </b-card-group>
 
   </div>
 </template>
@@ -37,10 +42,27 @@ export default {
   }),
   methods:{
       submit () {
-          alert("tes")
+          const ref = this.$firebase.database().ref(window.uid)
+          const id = ref.push().key
+
+          const payload = {
+              id,            
+              createdAt: new Date().getTime(),
+              imagem: "null",  
+              nome_produto: this.form.produtoNome,
+              valor: this.form.produtoValor
+          }
+          ref.child(id).set(payload, err => {
+              if(err){
+                  alert("erro")
+              }else{
+                  alert("cadastrado")
+              }
+          })
       }
   }
 }
+
 </script>
 
 <style scoped>

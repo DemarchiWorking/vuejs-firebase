@@ -1,0 +1,64 @@
+<template>
+  <div class="container m-4" > 
+    <div class="expense-list-item row" :key="i" v-for="(months, i) in groupedMonths">
+      <div class="col-2"> Nome Produto : test{{months.months}} </div>
+      <div class="col-8"> Valor:  {{nomeProduto}} </div>
+      <div class="col-2"> <button> Apagar </button> </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import groupBy from 'lodash.groupby'
+import moment from 'moment'
+
+export default {
+  name: 'ListarProdutos',
+  data: () => ({
+    expenses: []
+  }),
+  created () {
+    this.getData()
+  },
+  computed: {
+    groupedMonths () {
+      if(this.expenses.length){
+        const months = groupBy(this.expenses, i => (
+          moment(i.createdAt).format('MM/YYYY'))
+        )
+        const sortedMonths = Object.keys(months).sort((a, b) => {
+          const pattern = 'MM/YYYY HH'
+            if(moment(`${a} 01`, pattern).isBefore(moment(`${b} 01`, pattern))){
+              return -1
+        }else{
+              return+1
+              }
+        })
+        return sortedMonths.map(months => ({
+            months,
+            data: months[months],
+            nomeProduto: months.toString
+        }))
+      }else{
+        return []
+      }
+    }
+  },
+  methods: {
+    getData() {
+      const ref = this.$firebase.database().ref(`/${window.uid}`)
+      ref.on('value', snapshot => {
+          const values = snapshot.val()
+          this.expenses = Object.key(values).map(i => values[i])
+          console.log(ref)
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+*{
+  background-color: rgb(22, 23, 21,0.1);
+}
+</style>

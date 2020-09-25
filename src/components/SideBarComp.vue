@@ -16,9 +16,9 @@
           </p>
           <nav class="mb-3">
             <b-nav vertical>
-              <b-nav-item active @click="hide">  <b-icon icon="bar-chart-fill"></b-icon> Active  </b-nav-item>
-              <b-nav-item router-link to="/ListaUsuarios">Lista de Usuarios</b-nav-item>
-              <b-nav-item router-link to="/CadastrarProduto">Cadastrar Produto</b-nav-item>
+              <b-nav-item router-link to="/ListaUsuarios">  <b-icon icon="file-earmark-person"></b-icon> Lista de Usuarios</b-nav-item>
+              <b-nav-item router-link to="/CadastrarProduto"> <b-icon icon="bag-plus-fill"></b-icon> Cadastrar Produto</b-nav-item>
+              <b-nav-item router-link to="/ListarProdutos" @click="hide">  <b-icon icon="card-list"></b-icon> Listar Produtos  </b-nav-item>
              
             </b-nav>
           </nav>

@@ -19,6 +19,9 @@
     "core-js": "^3.6.5",
     "firebase": "^7.21.1",
     "jquery": "^3.5.1",
+    "lodash": "^4.17.20",
+    "lodash.groupby": "^4.6.0",
+    "moment": "^2.29.0",
     "vue": "^2.6.12",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.4.3"

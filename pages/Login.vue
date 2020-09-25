@@ -51,12 +51,12 @@
     methods: {
        async doLogin() {
          const { email, password } = this  // mesma coisa que fazer (const email = this.email // const password = this.password)
-         
+         const emailuser = this.email
          try{
             const res = await this.$firebase.auth().signInWithEmailAndPassword(email, password)
-            alert(res)
+            alert("Bem vindo" + emailuser)
             window.uid = res.user.uid
-            this.$router.push("ListaUsuarios")
+            this.$router.push("home")
 
           }catch(err){
             alert(err)

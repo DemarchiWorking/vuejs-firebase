@@ -28,6 +28,8 @@ export default {
   data: () => ({ isLogged: false}),
   mounted (){
     // SESSAO DE AUTH
+
+      
     console.log(this.$firebase)
     this.$firebase.auth().onAuthStateChanged(user => {
         window.uid = user ? user.uid : null
